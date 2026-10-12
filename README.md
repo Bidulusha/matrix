@@ -1,2 +1,2 @@
 # matrix
-Realization of matrix for c++
+Realization of matrix, written in C++
