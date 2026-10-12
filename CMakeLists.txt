@@ -9,13 +9,16 @@ cmake_minimum_required(VERSION 4.3)
 
 project(Matrix)
 
-add_executable(matrix_main)
-add_library(MatrixLibrary)
+add_library(matrix)
 
 target_sources(
-    MatrixLibrary
+    matrix
     PRIVATE
-        src/matrix.cpp
+        src/matrix_io.cc
+        src/matrix_operators.cc
+        src/matrix_gauss_method.cc
+        src/matrix_constructors.cc
+        src/matrix_getters.cc
 
     PUBLIC
         FILE_SET myHeaders
@@ -28,9 +31,6 @@ target_sources(
 
 find_package(OpenMP REQUIRED)
 
-target_compile_definitions(MatrixLibrary PRIVATE OMP_VERSION)
-target_compile_definitions(MatrixLibrary PRIVATE NUM_THREADS=6)
-target_link_libraries(MatrixLibrary PRIVATE OpenMP::OpenMP_CXX)
-
-target_link_libraries(matrix_main PUBLIC MatrixLibrary)
-target_sources(matrix_main PRIVATE main.cpp)
+# target_compile_definitions(matrix PRIVATE OMP_VERSION)
+# target_compile_definitions(matrix PRIVATE NUM_THREADS=6)
+target_link_libraries(matrix PRIVATE OpenMP::OpenMP_CXX)
