@@ -8,6 +8,12 @@
 #include <omp.h>
 #endif
 
+#ifdef OMP_VERSION
+#warning "OK: OMP_VERSION defined in matrix library"
+#else
+#warning "BUG: OMP_VERSION NOT defined in matrix library!"
+#endif
+
 
 
 class Matrix {
@@ -28,13 +34,22 @@ public:
 
     vector_2d get_matrix();
 
-    Matrix gauss_method(const Matrix& b);
+    Matrix gauss_method                     (const Matrix& b);
+    Matrix relaxation_method                (const Matrix& b, const double h, double eps = 1e-5);
+    Matrix gauss_method_for_puasson         (const Matrix& b, const int N);
+    Matrix relaxation_method_for_puasson    (const Matrix& B, const int N, const double h, double eps = 1e-5);
+    Matrix yacobi_method_for_puasson        (const int N, double h, double (*f)(double, double), double eps = 1e-5);
 
-    Matrix operator +                   (const Matrix &what) const;
-    Matrix operator -                   (const Matrix &what) const;
-    Matrix operator *                   (const Matrix &what) const;
-    std::vector<double>& operator []    (size_t index);
+    Matrix operator +                       (const Matrix &what) const;
+    Matrix operator -                       (const Matrix &what) const;
+    Matrix operator *                       (const Matrix &what) const;
+    
+    std::vector<double>& operator []        (int index);
+    const std::vector<double>& operator []  (int index) const;
+    std::vector<double>& operator []        (size_t index);
+    const std::vector<double>& operator []  (size_t index) const;
+    
 
-    friend std::ostream& operator<<     (std::ostream& os, const Matrix& obj);
-    friend std::istream& operator>>     (std::istream& is, Matrix& obj);
+    friend std::ostream& operator<<         (std::ostream& os, const Matrix& obj);
+    friend std::istream& operator>>         (std::istream& is, Matrix& obj);
 };

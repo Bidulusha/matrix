@@ -70,3 +70,18 @@ Matrix Matrix::operator *(const Matrix &what) const{
 std::vector<double>& Matrix::operator [](size_t index) {
     return this->matrix[index];
 }
+
+std::vector<double>& Matrix::operator [](int index) {
+    return this->matrix[index];
+}
+
+
+const std::vector<double>& Matrix::operator [](size_t index) const{
+    return this->matrix[index];
+}
+
+const std::vector<double>& Matrix::operator [](int index) const{
+    return this->matrix[index];
+}
+
+

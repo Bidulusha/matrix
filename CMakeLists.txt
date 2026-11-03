@@ -19,6 +19,8 @@ target_sources(
         src/matrix_gauss_method.cc
         src/matrix_constructors.cc
         src/matrix_getters.cc
+        src/matrix_yacobi.cc
+        src/matrix_relaxation.cc
 
     PUBLIC
         FILE_SET myHeaders
@@ -31,6 +33,6 @@ target_sources(
 
 find_package(OpenMP REQUIRED)
 
-# target_compile_definitions(matrix PRIVATE OMP_VERSION)
-# target_compile_definitions(matrix PRIVATE NUM_THREADS=6)
+target_compile_definitions(matrix PRIVATE OMP_VERSION)
+target_compile_definitions(matrix PRIVATE NUM_THREADS=12)
 target_link_libraries(matrix PRIVATE OpenMP::OpenMP_CXX)
