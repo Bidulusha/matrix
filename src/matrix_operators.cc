@@ -57,7 +57,7 @@ Matrix Matrix::operator *(const Matrix &what) const{
     #endif
     for (int i = 0; i < this->matrix.size(); i++) {
         new_matrix[i] = std::vector<double>(what.matrix[i].size());
-        for(int j = 0; j < this->matrix[0].size(); j++) {
+        for(int j = 0; j < what.matrix[0].size(); j++) {
             for (int k = 0; k < this->matrix[i].size(); k++) {
                 new_matrix[i][j] += this->matrix[i][k] * what.matrix[k][j];
             }

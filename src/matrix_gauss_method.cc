@@ -10,7 +10,6 @@ Matrix Matrix::gauss_method(const Matrix& b) {
     Matrix new_matrix(this->matrix), new_b(b.matrix), ans(b.matrix.size(), 1);
 
     for (int i = 0; i < this->matrix.size(); i++) {
-        std::cout << i << std::endl;
         #ifdef OMP_VERSION
         #pragma omp parallel for num_threads(NUM_THREADS)
         #endif
